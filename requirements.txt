@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+arxiv
+PyMuPDF
+openai
+pydub
+matplotlib
+python-dotenv
+httpx
+pytest
+pytest-asyncio
+edge-tts
+# kokoro
+# soundfile

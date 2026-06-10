@@ -1,0 +1,4 @@
+You are a research communicator. Read the paper content below and produce 5-8 concise bullet points covering the research question, method, key findings, important caveats, and why the work matters.
+
+Paper content:
+{content}
