@@ -18,6 +18,11 @@ from src.summarizer import summarize
 from src.tts_engine import text_to_speech
 from src.utils import LicenseNotAllowedException, get_paper_hash, safe_unlink, sanitize_arxiv_id
 
+app = FastAPI(title="ArXiv Podcast")
+config.ensure_directories()
+app.mount("/output", StaticFiles(directory=str(config.OUTPUT_DIR)), name="output")
+if (config.FRONTEND_DIST_DIR / "assets").exists():
+    app.mount("/assets", StaticFiles(directory=str(config.FRONTEND_DIST_DIR / "assets")), name="assets")
 app = FastAPI(title="Paper to Podcast")
 config.ensure_directories()
 app.mount("/output", StaticFiles(directory=str(config.OUTPUT_DIR)), name="output")
@@ -61,6 +66,7 @@ def _public_output_url(path: str | Path) -> str:
 
 
 def run_pipeline(job_id: str, arxiv_id: str) -> None:
+    """Run the complete ArXiv Podcast workflow for a background job."""
     """Run the complete paper-to-podcast workflow for a background job."""
     temp_files: list[str] = []
     try:
@@ -116,6 +122,10 @@ def run_pipeline(job_id: str, arxiv_id: str) -> None:
 
 @app.get("/", response_class=HTMLResponse)
 def index() -> HTMLResponse:
+    index_path = config.FRONTEND_DIST_DIR / "index.html"
+    if not index_path.exists():
+        index_path = config.FRONTEND_DIR / "index.html"
+    return HTMLResponse(index_path.read_text(encoding="utf-8"))
     return HTMLResponse((config.FRONTEND_DIR / "index.html").read_text(encoding="utf-8"))
 
 

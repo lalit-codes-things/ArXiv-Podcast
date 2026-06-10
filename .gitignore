@@ -7,3 +7,5 @@ __pycache__/
 *.png
 *.pdf
 .pytest_cache/
+node_modules/
+frontend/dist/

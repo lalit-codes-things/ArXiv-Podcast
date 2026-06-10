@@ -10,6 +10,7 @@ if util.find_spec("dotenv"):
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROMPTS_DIR = BASE_DIR / "prompts"
 FRONTEND_DIR = BASE_DIR / "frontend"
+FRONTEND_DIST_DIR = FRONTEND_DIR / "dist"
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 TTS_ENGINE = os.getenv("TTS_ENGINE", "edge").strip().lower()
