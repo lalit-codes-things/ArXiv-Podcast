@@ -23,6 +23,9 @@ config.ensure_directories()
 app.mount("/output", StaticFiles(directory=str(config.OUTPUT_DIR)), name="output")
 if (config.FRONTEND_DIST_DIR / "assets").exists():
     app.mount("/assets", StaticFiles(directory=str(config.FRONTEND_DIST_DIR / "assets")), name="assets")
+app = FastAPI(title="Paper to Podcast")
+config.ensure_directories()
+app.mount("/output", StaticFiles(directory=str(config.OUTPUT_DIR)), name="output")
 
 
 class GenerateRequest(BaseModel):
@@ -64,6 +67,7 @@ def _public_output_url(path: str | Path) -> str:
 
 def run_pipeline(job_id: str, arxiv_id: str) -> None:
     """Run the complete ArXiv Podcast workflow for a background job."""
+    """Run the complete paper-to-podcast workflow for a background job."""
     temp_files: list[str] = []
     try:
         clean_id = sanitize_arxiv_id(arxiv_id)
@@ -122,6 +126,7 @@ def index() -> HTMLResponse:
     if not index_path.exists():
         index_path = config.FRONTEND_DIR / "index.html"
     return HTMLResponse(index_path.read_text(encoding="utf-8"))
+    return HTMLResponse((config.FRONTEND_DIR / "index.html").read_text(encoding="utf-8"))
 
 
 @app.post("/api/generate")

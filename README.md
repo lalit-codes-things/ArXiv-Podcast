@@ -5,12 +5,19 @@ ArXiv Podcast turns eligible arXiv papers into pure conversational podcast episo
 ## Features
 
 - Consistent ArXiv Podcast frontend branding with a fixed Galaxy background and glass panels.
+# Paper to Podcast
+
+Paper to Podcast turns an arXiv paper into a pure conversational podcast episode. It downloads a paper, checks that the license allows derivative works, extracts the core text, asks OpenAI to summarize and script a 10+ minute Host/Expert discussion, synthesizes speech with free TTS, and produces an MP3 plus a waveform image.
+
+## Features
+
 - No ElevenLabs dependency.
 - No intro, outro, citation sounds, beeps, or bundled audio assets.
 - Free Edge TTS by default with a configurable male voice (`en-GB-RyanNeural`).
 - Optional Kokoro TTS fallback via `TTS_ENGINE=kokoro` if you install the optional dependencies.
 - Generated audio and waveform files are written to `output/`.
 - FastAPI backend with a React web UI.
+- FastAPI backend with a single-page web UI.
 - Unit tests with mocks for external APIs.
 
 ## Setup
@@ -48,6 +55,7 @@ uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 Open <http://localhost:8000>, enter an arXiv ID, and wait for generation to complete. If you are changing the React UI, run the Vite dev server separately or build the frontend before starting FastAPI.
+Open <http://localhost:8000>, enter an arXiv ID, and wait for generation to complete.
 
 ## Docker
 
