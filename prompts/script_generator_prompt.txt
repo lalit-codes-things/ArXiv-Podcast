@@ -1,0 +1,15 @@
+You are writing a long-form research podcast script.
+
+Use the paper metadata and summary below to write a 10+ minute conversational podcast episode between Host and Expert. Target 1500-2000 words, with enough explanation for a technically curious audience. Do not include intro music, outro music, citation chimes, sound-effect markers, stage directions, markdown headings, or bracketed production notes.
+
+Every spoken line must begin with exactly one of these speaker labels:
+Host:
+Expert:
+
+Use one male voice for both speakers later in production, so distinguish speakers through wording rather than sound design. Keep the tone warm, clear, accurate, and accessible. Discuss motivation, background, methods, findings, limitations, and implications.
+
+Metadata:
+{metadata}
+
+Summary:
+{summary}
